@@ -2,29 +2,40 @@ const header = document.querySelector(".main-header");
 const slides = document.querySelectorAll(".hero-slide");
 const oneSlide = document.querySelector(".hero-slide");
 const headerWrp = document.querySelector(".main-header-wrp");
+let isWritning = false;
 async function getResponseFacts() {
   const response = await fetch("https://catfact.ninja/fact ")
     .then(function (result) {
       return result.json();
     })
-    .then((text) => {
-      let i = 0;
-      let interval = setInterval(() => {
-        header.textContent += text.fact[i];
-        i++;
-        if (i >= text.length) {
-          clearInterval(interval);
-        }
-      }, 100);
-    })
     .catch((error) => {
       console.log(error);
     });
+  return response;
 }
 headerWrp.addEventListener("click", () => {
-  getResponseFacts();
+  if (!isWritning) {
+    header.textContent = "";
+    getFact();
+    isWritning = true;
+  }
   headerWrp.classList.add("active");
 });
+async function getFact() {
+  await getResponseFacts().then((result) => {
+    let i = 0;
+    let interval = setInterval(() => {
+      header.textContent += result.fact[i];
+      i++;
+      if (i >= result.length) {
+        clearInterval(interval);
+      }
+      if (result.length === header.textContent.length) {
+        isWritning = false;
+      }
+    }, 100);
+  });
+}
 
 let i = 0;
 async function getResponseImages() {
@@ -50,8 +61,6 @@ async function setImages() {
 }
 
 setImages();
-
-console.log(getResponseImages());
 
 let sliderIndex = 0;
 function sliderMove() {
