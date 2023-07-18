@@ -1,0 +1,92 @@
+body {
+  box-sizing: border-box;
+}
+
+.header {
+
+}
+.header-contents-wrp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-contents {
+
+}
+
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hero-slider {
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+  width: 500px;
+  height: 300px;
+}
+.hero-slide {
+  position: absolute;
+  width: 460px;
+  height: 260px;
+  padding: 20px;
+  font-size: 30px;
+  color: pink;
+  border: 5px solid pink;
+  border-radius: 15px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  transition: opacity ease-in-out .4s;
+}
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.main-header-wrp {
+  position: relative;
+  flex-grow: 1;
+  width: 500px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid pink;
+  border-radius: 15px;
+  background-color: pink;
+  background-image: url('img/paw-prints.svg');
+  background-size: 70%;
+  background-repeat: no-repeat;
+  margin: 0 0 0 50px;
+}
+.main-header-wrp::after {
+  content: 'Click here for fun fact!';
+  position: absolute;
+  font-size: 30px;
+  color: white;
+  opacity: 1;
+}
+.main-header-wrp::after.active  {
+  content: 'Click here for fun fact!';
+  position: absolute;
+  font-size: 30px;
+  color: white;
+  opacity: 1;
+}
+.main-header-wrp.active::after{
+  opacity: 0;
+}
+.main-header {
+  text-align: center;
+  color: white;
+  padding: 20px;
+  width: 100%;
+}
